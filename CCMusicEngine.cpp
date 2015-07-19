@@ -36,14 +36,13 @@ namespace CCMusicEngine {
     
     }
     
-    Music::Music(int audioID, float tempo)
-    : _audioID(audioID)
-    , _tempo(tempo)
+    Music::Music(float tempo)
+    : _tempo(tempo)
+    , _currentTime(0)
     , _unitPerBar(16)
     , _unitPerBeat(4)
     , _timing(Timing(0, 0, 0))
     {
-        
     }
     
     Music::~Music()
@@ -56,9 +55,9 @@ namespace CCMusicEngine {
         return true;
     }
     
-    Music* Music::create(int audioID, float tempo)
+    Music* Music::create(float tempo)
     {
-        Music * music = new Music(audioID, tempo);
+        Music * music = new Music(tempo);
         if (music && music->init()) {
             music->autorelease();
             return music;
@@ -74,16 +73,14 @@ namespace CCMusicEngine {
     
     void Music::updateTiming()
     {
-        double currentTime = cocos2d::experimental::AudioEngine::getCurrentTime(_audioID);
-        cocos2d::log("%lf", currentTime);
         float secPerBeat = 60.0 / _tempo;
         float secPerUnit = secPerBeat / _unitPerBeat;
         float secPerBar = secPerUnit * _unitPerBar;
-        int bar = floor(currentTime / secPerBar);
+        int bar = floor(_currentTime / secPerBar);
         double barOffset = bar * secPerBar;
-        int beat = floor((currentTime - barOffset) / secPerBeat);
+        int beat = floor((_currentTime - barOffset) / secPerBeat);
         double beatOffset = barOffset + (beat * secPerBeat);
-        int unit = floor((currentTime - beatOffset) / secPerUnit);
+        int unit = floor((_currentTime - beatOffset) / secPerUnit);
 
         _timing.bar = bar;
         _timing.beat = beat;

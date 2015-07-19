@@ -10,7 +10,6 @@
 #define __Commuage__CCMusicEngine__
 
 #include "cocos2d.h"
-#include <AudioEngine.h>
 
 namespace CCMusicEngine {
     
@@ -29,14 +28,14 @@ namespace CCMusicEngine {
     class Music :public cocos2d::Ref {
     CC_CONSTRUCTOR_ACCESS:
         virtual bool init();
-        Music(int audioID, float tempo);
+        Music(float tempo);
         virtual ~Music();
     public:
         void update(float dt);
-        static Music* create(int audioID, float tempo);
+        static Music* create(float tempo);
         
-        CC_SYNTHESIZE(int, _audioID, AudioID);
         CC_SYNTHESIZE(float, _tempo, Tempo);
+        CC_SYNTHESIZE(float, _currentTime, CurrentTime);
         CC_SYNTHESIZE(int, _unitPerBeat, UnitPerBeat);
         CC_SYNTHESIZE(int, _unitPerBar, UnitPerBar);
         CC_SYNTHESIZE_PASS_BY_REF(Timing, _timing, Timing);
