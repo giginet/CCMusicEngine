@@ -20,7 +20,7 @@ bool YourScene::init()
     cocos2d::experimental::AudioEngine::play2d("my_music.wav");
 
     // you can change `unitPerBar` and `unitPerBeat` properties.
-    // For example, time signiture of your music is 4/4,
+    // For example, time signature of your music is 4/4,
     // unitPerBar = 16, unitPerBeat = 4(These are default values)
     _music->setUnitPerBar(16);
     _music->setUnitPerBeat(4);
@@ -40,8 +40,8 @@ void YourScene::update(float dt)
 }
 ```
 
-**Notice**: To get current time of playing musics you should not use `AudioEngine::getCurrentTime()`.
-In latest cocos2d-x, this method will returns inaccurate seconds. So this library will not work well.
+**Notice**: To get current time of playing musics, you should not use `AudioEngine::getCurrentTime()`.
+In latest cocos2d-x, this method will return inaccurate seconds. So this library will not work well.
 
 Ref : [New AudioEngine getCurrentTime() precision BUG (win32) · Issue #9854 · cocos2d/cocos2d-x](https://github.com/cocos2d/cocos2d-x/issues/9854)
 
