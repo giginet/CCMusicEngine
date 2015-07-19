@@ -72,10 +72,10 @@ void Music::updateTiming()
     Timing nextBeat = _timing.nextBeat(_unitPerBar, _unitPerBeat);
     
     if (lastTiming.unit != unit) {
-        this->dispatchEvent("CCMusicEngine.onJustChanged");
+        this->dispatchEvent("CCMusicEngine.onJustChangedAt");
     } else if ((timingToSecond(nextUnit) - _lastTime) >= nearUnitThreshold &&
                (timingToSecond(nextUnit) - _currentTime) < nearUnitThreshold) {
-        this->dispatchEvent("CCMusicEngine.onNearChanged");
+        this->dispatchEvent("CCMusicEngine.onNearChangedAt");
     }
     if (lastTiming.beat != beat) {
         this->dispatchEvent("CCMusicEngine.onJustChangedBeat");
