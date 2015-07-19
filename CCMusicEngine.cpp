@@ -12,6 +12,14 @@ namespace CCMusicEngine {
     
     const Timing Timing::ZERO = Timing(0, 0, 0);
     
+    Timing::Timing()
+    : bar(0)
+    , beat(0)
+    , unit(0)
+    {
+        
+    }
+    
     Timing::Timing(int bar, int beat, int unit)
     : bar(bar)
     , beat(beat)
@@ -20,12 +28,20 @@ namespace CCMusicEngine {
         
     }
     
+    Timing::Timing(const CCMusicEngine::Timing & other)
+    : bar(other.bar)
+    , beat(other.beat)
+    , unit(other.unit)
+    {
+    
+    }
+    
     Music::Music(int audioID, float tempo)
-    : _audioID(_audioID)
-    , _tempo(_tempo)
+    : _audioID(audioID)
+    , _tempo(tempo)
     , _unitPerBar(16)
     , _unitPerBeat(4)
-    , _timing(Timing::ZERO)
+    , _timing(Timing(0, 0, 0))
     {
         
     }
@@ -53,22 +69,25 @@ namespace CCMusicEngine {
     
     void Music::update(float dt)
     {
-
+        this->updateTiming();
     }
     
     void Music::updateTiming()
     {
-        auto currentTime = cocos2d::experimental::AudioEngine::getCurrentTime(_audioID);
-        int secPerBeat = 60 / _tempo;
-        int secPerUnit = secPerBeat / _unitPerBeat;
-        int secPerBar = secPerUnit * _unitPerBar;
+        double currentTime = cocos2d::experimental::AudioEngine::getCurrentTime(_audioID);
+        cocos2d::log("%lf", currentTime);
+        float secPerBeat = 60.0 / _tempo;
+        float secPerUnit = secPerBeat / _unitPerBeat;
+        float secPerBar = secPerUnit * _unitPerBar;
         int bar = floor(currentTime / secPerBar);
         double barOffset = bar * secPerBar;
-        int beat = (currentTime - barOffset) / secPerBeat;
+        int beat = floor((currentTime - barOffset) / secPerBeat);
         double beatOffset = barOffset + (beat * secPerBeat);
         int unit = floor((currentTime - beatOffset) / secPerUnit);
-        Timing newTiming(bar, beat, unit);
-        _timing = newTiming;
+
+        _timing.bar = bar;
+        _timing.beat = beat;
+        _timing.unit = unit;
     }
     
     

@@ -21,6 +21,8 @@ namespace CCMusicEngine {
         int unit;
         Timing();
         Timing(int bar, int beat, int unit);
+        Timing(const Timing& other);
+        
         static const Timing ZERO;
     };
 
@@ -37,7 +39,7 @@ namespace CCMusicEngine {
         CC_SYNTHESIZE(float, _tempo, Tempo);
         CC_SYNTHESIZE(int, _unitPerBeat, UnitPerBeat);
         CC_SYNTHESIZE(int, _unitPerBar, UnitPerBar);
-        CC_SYNTHESIZE(Timing, _timing, Timing);
+        CC_SYNTHESIZE_PASS_BY_REF(Timing, _timing, Timing);
     private:
         void updateTiming();
     };
