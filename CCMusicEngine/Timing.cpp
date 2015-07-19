@@ -2,7 +2,7 @@
 //  Timing.cpp
 //  CCMusicEngine
 //
-//  Created by koki-miki on 7/20/15.
+//  Created by giginet on 7/20/15.
 //
 //
 

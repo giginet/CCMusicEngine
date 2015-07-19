@@ -2,7 +2,7 @@
 //  CCMusicEngine.h
 //  CCMusicEngine
 //
-//  Created by koki-miki on 7/19/15.
+//  Created by giginet on 7/19/15.
 //
 //
 
