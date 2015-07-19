@@ -1,19 +1,20 @@
 # CCMusicEngine
 
 This is the port of MusicEngine for Unity by [@geekdrums](https://github.com/geekdrums/)
+This library can be used on cocos2d-x(Recommended cocos2d-x 3.6).
 
 https://github.com/geekdrums/MusicEngine
 
 For detail to read his documentation.
 
-[English](https://github.com/geekdrums/MusicEngine/blob/master/AboutMusicEngineEn.pdf)
-[日本語](https://github.com/geekdrums/MusicEngine/blob/master/AboutMusicEngine.pdf)
+- [English](https://github.com/geekdrums/MusicEngine/blob/master/AboutMusicEngineEn.pdf)
+- [日本語](https://github.com/geekdrums/MusicEngine/blob/master/AboutMusicEngine.pdf)
 
 ## Usage
 
 ### Setup
 
-1. Add `CCMusicEngine` directory into your project
+1. Add `CCMusicEngine` directory into your cocos2d-x project
 2. Include `CCMusicEngine.h`
 3. Initialize Music
 
