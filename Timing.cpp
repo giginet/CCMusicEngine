@@ -65,12 +65,13 @@ Timing Timing::next(int unitPerBar, int unitPerBeat)
 
 Timing Timing::nextBeat(int unitPerBar, int unitPerBeat)
 {
-    return seek(unitPerBeat, unitPerBar, unitPerBeat);
+    return seek(unitPerBeat - unit, unitPerBar, unitPerBeat);
 }
 
 Timing Timing::nextBar(int unitPerBar, int unitPerBeat)
 {
-    return seek(unitPerBar, unitPerBar, unitPerBeat);
+    int offset = unitPerBar - ((beat * unitPerBeat) + unit);
+    return seek(offset, unitPerBar, unitPerBeat);
 }
 
 Timing Timing::seek(int offset, int unitPerBar, int unitPerBeat)

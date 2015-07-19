@@ -83,7 +83,7 @@ void Music::updateTiming()
                (timingToSecond(nextBeat) - _currentTime) < nearBeatThreshold) {
         this->dispatchEvent("CCMusicEngine.onNearChangedBeat");
     }
-
+    
     if (lastTiming.bar != bar) {
         this->dispatchEvent("CCMusicEngine.onJustChangedBar");
     } else if ((timingToSecond(nextBar) - _lastTime) >= nearBarThreshold &&
