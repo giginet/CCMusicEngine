@@ -4,6 +4,11 @@ This is the port of MusicEngine for Unity by [@geekdrums](https://github.com/gee
 
 https://github.com/geekdrums/MusicEngine
 
+For detail to read his documentation.
+
+[English](https://github.com/geekdrums/MusicEngine/blob/master/AboutMusicEngineEn.pdf)
+[日本語](https://github.com/geekdrums/MusicEngine/blob/master/AboutMusicEngine.pdf)
+
 ## Usage
 
 ### Setup
@@ -30,7 +35,7 @@ bool YourScene::init()
 
 void YourScene::update(float dt) 
 {
-    // You have to set current second of your playing musics to the Music instance manually.
+    // You have to set current second of your playing music to the Music instance manually.
     _music->setCurrentTime(currentSecond);
     _music->update();
     CCMusicEngine::Timing currentTiming = _music->getTiming();
@@ -40,7 +45,7 @@ void YourScene::update(float dt)
 }
 ```
 
-**Notice**: To get current time of playing musics, you should not use `AudioEngine::getCurrentTime()`.
+**Notice**: To get current time of playing music, you should not use `AudioEngine::getCurrentTime()`.
 In latest cocos2d-x, this method will return inaccurate seconds. So this library will not work well.
 
 Ref : [New AudioEngine getCurrentTime() precision BUG (win32) · Issue #9854 · cocos2d/cocos2d-x](https://github.com/cocos2d/cocos2d-x/issues/9854)
@@ -51,7 +56,7 @@ You can use custom events to detect the music state would be changed.
 
 ```cpp
 this->getEventDispatcher()->addCustomEvent("CCMusicEngine.onJustChangedBar", [](Event *event) {
-    CCMusicEngine::Music *music = static_cast<Music *>(event->getUserData());
+    CCMusicEngine::Music *music = static_cast<CCMusicEngine::Music *>(event->getUserData());
 });
 
 ```
