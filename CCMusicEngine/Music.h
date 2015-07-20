@@ -36,11 +36,22 @@ public:
      */
     float distanceTo(Timing timing);
     
+    /**
+     * Get next Unit/Beat/Bar
+     * @return next timing
+     */
+    Timing next();
+    Timing nextBeat();
+    Timing nextBar();
+    
     CC_SYNTHESIZE(float, _tempo, Tempo);
     CC_SYNTHESIZE(float, _currentTime, CurrentTime);
     CC_SYNTHESIZE(float, _lastTime, LastTime);
     CC_SYNTHESIZE(int, _unitPerBeat, UnitPerBeat);
     CC_SYNTHESIZE(int, _unitPerBar, UnitPerBar);
+    CC_SYNTHESIZE_READONLY(float, _unitDuration, UnitDuration);
+    CC_SYNTHESIZE_READONLY(float, _beatDuration, beatDuration);
+    CC_SYNTHESIZE_READONLY(float, _barDuration, barDuration);
     CC_SYNTHESIZE_PASS_BY_REF(Timing, _timing, Timing);
 private:
     void updateTiming();

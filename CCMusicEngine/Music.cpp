@@ -16,6 +16,9 @@ Music::Music(float tempo)
 , _lastTime(0)
 , _unitPerBar(16)
 , _unitPerBeat(4)
+, _unitDuration(0)
+, _beatDuration(0)
+, _barDuration(0)
 , _timing(Timing(0, 0, 0))
 {
 }
@@ -43,13 +46,10 @@ Music* Music::create(float tempo)
 
 float Music::getMusicalTime()
 {
-    const float secPerBeat = 60.0 / _tempo;
-    const float secPerUnit = secPerBeat / _unitPerBeat;
-    const float secPerBar = secPerUnit * _unitPerBar;
-    float barOffset = _timing.bar * secPerBar;
-    float beatOffset = barOffset + (_timing.beat * secPerBeat);
-    float unit = (_currentTime - beatOffset) / secPerUnit;
-    return _timing.bar * secPerBar + _timing.beat * secPerBeat + unit;
+    float barOffset = _timing.bar * _barDuration;
+    float beatOffset = barOffset + (_timing.beat * _beatDuration);
+    float unit = (_currentTime - beatOffset) / _unitDuration;
+    return _timing.bar * _barDuration + _timing.beat * _beatDuration + unit;
 }
 
 float Music::distanceTo(CCMusicEngine::Timing timing)
@@ -57,6 +57,21 @@ float Music::distanceTo(CCMusicEngine::Timing timing)
     auto dst = timing.unitCount(_unitPerBar, _unitPerBeat);
     auto src = this->getMusicalTime();
     return dst - src;
+}
+
+Timing Music::next()
+{
+    return _timing.next(_unitPerBar, _unitPerBeat);
+}
+
+Timing Music::nextBeat()
+{
+    return _timing.nextBeat(_unitPerBar, _unitPerBeat);
+}
+
+Timing Music::nextBar()
+{
+    return _timing.nextBar(_unitPerBar, _unitPerBeat);
 }
 
 void Music::update(float dt)
@@ -69,22 +84,22 @@ void Music::updateTiming()
     
     Timing lastTiming(_timing);
     
-    const float secPerBeat = 60.0 / _tempo;
-    const float secPerUnit = secPerBeat / _unitPerBeat;
-    const float secPerBar = secPerUnit * _unitPerBar;
-    int bar = floor(_currentTime / secPerBar);
-    float barOffset = bar * secPerBar;
-    int beat = floor((_currentTime - barOffset) / secPerBeat);
-    float beatOffset = barOffset + (beat * secPerBeat);
-    int unit = floor((_currentTime - beatOffset) / secPerUnit);
+    _beatDuration = 60.0 / _tempo;
+    _unitDuration = _beatDuration / _unitPerBeat;
+    _barDuration = _unitDuration * _unitPerBar;
+    int bar = floor(_currentTime / _barDuration);
+    float barOffset = bar * _barDuration;
+    int beat = floor((_currentTime - barOffset) / _beatDuration);
+    float beatOffset = barOffset + (beat * _beatDuration);
+    int unit = floor((_currentTime - beatOffset) / _unitDuration);
     
     _timing.bar = bar;
     _timing.beat = beat;
     _timing.unit = unit;
     
-    const float nearUnitThreshold = secPerUnit / 2.0;
-    const float nearBeatThreshold = secPerBeat / 2.0;
-    const float nearBarThreshold = secPerBar / 2.0;
+    const float nearUnitThreshold = _unitDuration / 2.0;
+    const float nearBeatThreshold = _beatDuration / 2.0;
+    const float nearBarThreshold = _barDuration / 2.0;
     Timing nextUnit = _timing.next(_unitPerBar, _unitPerBeat);
     Timing nextBar = _timing.nextBar(_unitPerBar, _unitPerBeat);
     Timing nextBeat = _timing.nextBeat(_unitPerBar, _unitPerBeat);
