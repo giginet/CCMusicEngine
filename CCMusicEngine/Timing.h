@@ -34,6 +34,7 @@ public:
     Timing nextBar(int unitPerBar, int unitPerBeat);
     
     Timing seek(int offset, int unitPerBar, int unitPerBeat);
+    bool isBeginningBar();
     
     static const Timing ZERO;
 };

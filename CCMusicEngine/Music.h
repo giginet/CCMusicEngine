@@ -23,6 +23,19 @@ public:
     void update(float dt);
     static Music* create(float tempo);
     
+    /**
+     Get musical time of current time
+     * @return current musical time
+     */
+    float getMusicalTime();
+    
+    /**
+     * Calc distance to the specific timing by musical time
+     * @param timing destination
+     * @return musical time
+     */
+    float distanceTo(Timing timing);
+    
     CC_SYNTHESIZE(float, _tempo, Tempo);
     CC_SYNTHESIZE(float, _currentTime, CurrentTime);
     CC_SYNTHESIZE(float, _lastTime, LastTime);

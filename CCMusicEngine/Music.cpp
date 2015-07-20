@@ -41,6 +41,24 @@ Music* Music::create(float tempo)
     return nullptr;
 }
 
+float Music::getMusicalTime()
+{
+    const float secPerBeat = 60.0 / _tempo;
+    const float secPerUnit = secPerBeat / _unitPerBeat;
+    const float secPerBar = secPerUnit * _unitPerBar;
+    float barOffset = _timing.bar * secPerBar;
+    float beatOffset = barOffset + (_timing.beat * secPerBeat);
+    float unit = (_currentTime - beatOffset) / secPerUnit;
+    return _timing.bar * secPerBar + _timing.beat * secPerBeat + unit;
+}
+
+float Music::distanceTo(CCMusicEngine::Timing timing)
+{
+    auto dst = timing.unitCount(_unitPerBar, _unitPerBeat);
+    auto src = this->getMusicalTime();
+    return dst - src;
+}
+
 void Music::update(float dt)
 {
     this->updateTiming();

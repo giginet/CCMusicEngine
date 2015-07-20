@@ -10,6 +10,6 @@
 #define Commuage_CCMusicEngine_h
 
 #include "Timing.h"
-#include "MusicEngine.h"
+#include "Music.h"
 
 #endif

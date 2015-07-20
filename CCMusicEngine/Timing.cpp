@@ -83,4 +83,9 @@ Timing Timing::seek(int offset, int unitPerBar, int unitPerBeat)
     return Timing::createByUnit(unit + offset, unitPerBar, unitPerBeat);
 }
 
+bool Timing::isBeginningBar()
+{
+    return beat == 0 && unit == 0;
+}
+
 NS_MUSIC_ENGINE_END
