@@ -59,7 +59,6 @@ You can use custom events to detect the music state would be changed.
 this->getEventDispatcher()->addCustomEvent("CCMusicEngine.onJustChangedBar", [](Event *event) {
     CCMusicEngine::Music *music = static_cast<CCMusicEngine::Music *>(event->getUserData());
 });
-
 ```
 
 You can use following events.
@@ -70,8 +69,27 @@ You can use following events.
 
 These events will be called on changes just after bar/beat/unit.
 
-#### CCMusicEngine.onNearChangedUnit
+#### CCMusicEngine.onNearChangedBar
 #### CCMusicEngine.onNearChangedBeat
 #### CCMusicEngine.onNearChangedAt
 
 These events will be called on changes the nearest bar/beat/unit.
+
+## Other methods
+
+### Music#getUnitDuration()
+### Music#getBarDuration()
+### Music#getBeatDuration()
+
+Durations of unit/bar/beat in second.
+
+### Music#getMusicalTime
+
+Get current musical time from beginning of music.
+
+Musical time indicates duration of the music by unit.
+When `unitPerBar` is 16, duration of 16th notes is 1 in musical time.
+
+### Music#distanceTo(Timing)
+
+Calculate distance in musical time from current position to the specific timing.
