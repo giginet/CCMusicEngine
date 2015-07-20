@@ -83,7 +83,7 @@ Timing Timing::seek(int offset, int unitPerBar, int unitPerBeat)
     return Timing::createByUnit(unit + offset, unitPerBar, unitPerBeat);
 }
 
-bool Timing::isBeginningBar()
+bool Timing::isBeginningOfBar()
 {
     return beat == 0 && unit == 0;
 }
