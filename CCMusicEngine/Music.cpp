@@ -46,17 +46,15 @@ Music* Music::create(float tempo)
 
 float Music::getMusicalTime()
 {
-    float barOffset = _timing.bar * _barDuration;
-    float beatOffset = barOffset + (_timing.beat * _beatDuration);
-    float unit = (_currentTime - beatOffset) / _unitDuration;
-    return _timing.bar * _barDuration + _timing.beat * _beatDuration + unit;
+    float toBeat = _timing.bar * _barDuration + _timing.beat * _beatDuration;
+    float offset = toBeat * _unitDuration;
+    return toBeat + ((_currentTime - offset) / _unitDuration);
 }
 
 float Music::distanceTo(CCMusicEngine::Timing timing)
 {
-    auto dst = timing.unitCount(_unitPerBar, _unitPerBeat);
-    auto src = this->getMusicalTime();
-    return dst - src;
+    auto dstSecond = timing.unitCount(_unitPerBar, _unitPerBeat) * _unitDuration;
+    return (dstSecond - _currentTime) / _unitDuration;
 }
 
 Timing Music::next()
