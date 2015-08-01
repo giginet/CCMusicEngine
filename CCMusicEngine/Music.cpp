@@ -14,6 +14,7 @@ Music::Music(float tempo)
 : _tempo(tempo)
 , _currentTime(0)
 , _lastTime(0)
+, _enabled(true)
 , _unitPerBar(16)
 , _unitPerBeat(4)
 , _unitDuration(0)
@@ -74,6 +75,9 @@ Timing Music::nextBar()
 
 void Music::update(float dt)
 {
+    if (!_enabled) {
+        return;
+    }
     this->updateTiming();
 }
 

@@ -49,6 +49,7 @@ public:
     CC_SYNTHESIZE(float, _lastTime, LastTime);
     CC_SYNTHESIZE(int, _unitPerBeat, UnitPerBeat);
     CC_SYNTHESIZE(int, _unitPerBar, UnitPerBar);
+    CC_SYNTHESIZE(bool, _enabled, Enabled);
     CC_SYNTHESIZE_READONLY(float, _unitDuration, UnitDuration);
     CC_SYNTHESIZE_READONLY(float, _beatDuration, beatDuration);
     CC_SYNTHESIZE_READONLY(float, _barDuration, barDuration);
