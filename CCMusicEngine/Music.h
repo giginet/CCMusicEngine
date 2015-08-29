@@ -14,6 +14,13 @@
 
 NS_MUSIC_ENGINE_BEGIN
 
+extern const char* onJustChangedBarEventName;
+extern const char* onJustChangedBeatEventName;
+extern const char* onJustChangedAtEventName;
+extern const char* onNearChangedBarEventName;
+extern const char* onNearChangedBeatEventName;
+extern const char* onNearChangedAtEventName;
+
 class Music :public cocos2d::Ref {
 CC_CONSTRUCTOR_ACCESS:
     virtual bool init();

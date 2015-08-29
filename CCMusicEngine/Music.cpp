@@ -10,6 +10,13 @@
 
 NS_MUSIC_ENGINE_BEGIN
 
+const char* onJustChangedBarEventName = "CCMusicEngine.onJustChangedBar";
+const char* onJustChangedBeatEventName = "CCMusicEngine.onJustChangedBeat";
+const char* onJustChangedAtEventName = "CCMusicEngine.onJustChangedAt";
+const char* onNearChangedBarEventName = "CCMusicEngine.onNearChangedBar";
+const char* onNearChangedBeatEventName = "CCMusicEngine.onNearChangedBeat";
+const char* onNearChangedAtEventName = "CCMusicEngine.onNearChangedAt";
+
 Music::Music(float tempo)
 : _tempo(tempo)
 , _currentTime(0)
