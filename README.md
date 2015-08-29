@@ -56,7 +56,7 @@ Ref : [New AudioEngine getCurrentTime() precision BUG (win32) · Issue #9854 · 
 You can use custom events to detect the music state would be changed.
 
 ```cpp
-this->getEventDispatcher()->addCustomEvent("CCMusicEngine.onJustChangedBar", [](Event *event) {
+this->getEventDispatcher()->addCustomEvent(onJustChangedBeatEventName, [](Event *event) {
     CCMusicEngine::Music *music = static_cast<CCMusicEngine::Music *>(event->getUserData());
 });
 ```
