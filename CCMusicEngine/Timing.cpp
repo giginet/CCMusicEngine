@@ -7,6 +7,7 @@
 //
 
 #include "Timing.h"
+#include <cmath>
 
 NS_MUSIC_ENGINE_BEGIN
 
