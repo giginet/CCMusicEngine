@@ -63,15 +63,15 @@ this->getEventDispatcher()->addCustomEvent(onJustChangedBeatEventName, [](Event 
 
 You can use following events.
 
-#### CCMusicEngine.onJustChangedBar
-#### CCMusicEngine.onJustChangedBeat
-#### CCMusicEngine.onJustChangedAt
+#### onJustChangedBarEventName
+#### onJustChangedBeatEventName
+#### onJustChangedAtEventName
 
 These events will be called on changes just after bar/beat/unit.
 
-#### CCMusicEngine.onNearChangedBar
-#### CCMusicEngine.onNearChangedBeat
-#### CCMusicEngine.onNearChangedAt
+#### onNearChangedBarEventName
+#### onNearChangedBeatEventName
+#### onNearChangedAtEventName
 
 These events will be called on changes the nearest bar/beat/unit.
 
@@ -93,3 +93,9 @@ When `unitPerBar` is 16, duration of 16th notes is 1 in musical time.
 ### Music#distanceTo(Timing)
 
 Calculate distance in musical time from current position to the specific timing.
+
+### Music#setEnabled(boolean)
+
+Set whether music is enabled or not.
+If musics are disabled, musical times will not be updated.
+
