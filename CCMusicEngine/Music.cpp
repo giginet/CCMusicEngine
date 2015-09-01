@@ -85,6 +85,9 @@ void Music::update(float dt)
     if (!_enabled) {
         return;
     }
+    if (_updateHandler) {
+        _currentTime = _updateHandler(this);
+    }
     this->updateTiming();
 }
 

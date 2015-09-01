@@ -21,6 +21,10 @@ extern const char* onNearChangedBarEventName;
 extern const char* onNearChangedBeatEventName;
 extern const char* onNearChangedAtEventName;
 
+class Music;
+
+typedef std::function<float (Music *)> CCMusicEngineUpdateTimeHandler;
+
 class Music :public cocos2d::Ref {
 CC_CONSTRUCTOR_ACCESS:
     virtual bool init();
@@ -51,17 +55,24 @@ public:
     Timing nextBeat();
     Timing nextBar();
     
+    void setUpdateTimeHandler(CCMusicEngineUpdateTimeHandler handler)
+    {
+        _updateHandler = handler;
+    };
+    bool removeUpdateTimeHandler();
+    
     CC_SYNTHESIZE(float, _tempo, Tempo);
-    CC_SYNTHESIZE(float, _currentTime, CurrentTime);
     CC_SYNTHESIZE(float, _lastTime, LastTime);
     CC_SYNTHESIZE(int, _unitPerBeat, UnitPerBeat);
     CC_SYNTHESIZE(int, _unitPerBar, UnitPerBar);
     CC_SYNTHESIZE(bool, _enabled, Enabled);
+    CC_SYNTHESIZE_READONLY(float, _currentTime, CurrentTime);
     CC_SYNTHESIZE_READONLY(float, _unitDuration, UnitDuration);
     CC_SYNTHESIZE_READONLY(float, _beatDuration, beatDuration);
     CC_SYNTHESIZE_READONLY(float, _barDuration, barDuration);
     CC_SYNTHESIZE_PASS_BY_REF(Timing, _timing, Timing);
 private:
+    CCMusicEngineUpdateTimeHandler _updateHandler;
     void updateTiming();
     void dispatchEvent(const char* eventName);
     float timingToSecond(Timing timing);
