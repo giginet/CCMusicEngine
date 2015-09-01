@@ -55,6 +55,13 @@ public:
     Timing nextBeat();
     Timing nextBar();
     
+    /**
+     * Set the function to get current playing time
+     * @param the std::function which returns current music position in second
+     * This function must be following type
+     *    @param music object(this)
+     *    @return current music position in second
+     */
     void setUpdateTimeHandler(CCMusicEngineUpdateTimeHandler handler)
     {
         _updateHandler = handler;

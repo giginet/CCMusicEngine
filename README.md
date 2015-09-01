@@ -31,14 +31,22 @@ bool YourScene::init()
     _music->setUnitPerBar(16);
     _music->setUnitPerBeat(4);
 
+    // set update time handler
+    // You must set the function which returns current music time.
+    _music->setUpdateTimeHandler([](Music *music) {
+        return currentTime;
+    });
+
+    // Schedule update for _music
+    // _music->update will be called on every frames.
+    this->getScheduler()->scheduleUpdate(_music, 0, false);
+
     _music->retain();
 }
 
 void YourScene::update(float dt) 
 {
     // You have to set current second of your playing music to the Music instance manually.
-    _music->setCurrentTime(currentSecond);
-    _music->update();
     CCMusicEngine::Timing currentTiming = _music->getTiming();
 
     // You can get Timing object. This contains musical attributes.
