@@ -29,6 +29,7 @@ public:
     
     Timing next(int unitPerBar, int unitPerBeat);
     Timing prev(int unitPerBar, int unitPerBeat);
+    bool equals(Timing other);
     
     Timing nextBeat(int unitPerBar, int unitPerBeat);
     Timing nextBar(int unitPerBar, int unitPerBeat);

@@ -64,6 +64,11 @@ Timing Timing::next(int unitPerBar, int unitPerBeat)
     return seek(1, unitPerBar, unitPerBeat);
 }
 
+bool Timing::equals(CCMusicEngine::Timing other)
+{
+    return unit == other.unit && beat == other.beat && bar == other.bar;
+}
+
 Timing Timing::nextBeat(int unitPerBar, int unitPerBeat)
 {
     return seek(unitPerBeat - unit, unitPerBar, unitPerBeat);
