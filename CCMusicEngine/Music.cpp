@@ -28,12 +28,13 @@ Music::Music(float tempo)
 , _beatDuration(0)
 , _barDuration(0)
 , _timing(Timing(0, 0, 0))
+, _updateHandler(0)
 {
 }
 
 Music::~Music()
 {
-    
+    _updateHandler = nullptr;
 }
 
 bool Music::init()
