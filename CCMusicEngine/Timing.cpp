@@ -1,11 +1,3 @@
-//
-//  Timing.cpp
-//  CCMusicEngine
-//
-//  Created by giginet on 7/20/15.
-//
-//
-
 #include "Timing.h"
 #include <cmath>
 

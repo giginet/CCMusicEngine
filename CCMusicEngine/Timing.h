@@ -1,11 +1,3 @@
-//
-//  Timing.h
-//  CCMusicEngine
-//
-//  Created by giginet on 7/20/15.
-//
-//
-
 #ifndef __CCMusicEngine__Timing__
 #define __CCMusicEngine__Timing__
 

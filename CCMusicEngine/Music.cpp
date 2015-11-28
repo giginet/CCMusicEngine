@@ -1,11 +1,3 @@
-//
-//  CCMusicEngine.cpp
-//  CCMusicEngine
-//
-//  Created by giginet on 7/19/15.
-//
-//
-
 #include "CCMusicEngine.h"
 
 NS_MUSIC_ENGINE_BEGIN

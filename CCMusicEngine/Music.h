@@ -1,11 +1,3 @@
-//
-//  CCMusicEngine.h
-//  CCMusicEngine
-//
-//  Created by giginet on 7/19/15.
-//
-//
-
 #ifndef __CCMusicEngine__CCMusicEngine__
 #define __CCMusicEngine__CCMusicEngine__
 
